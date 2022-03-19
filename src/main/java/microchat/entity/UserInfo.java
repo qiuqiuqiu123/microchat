@@ -1,7 +1,12 @@
 package microchat.entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.UUID;
 
 /**
  * 用户信息，与用户表对应
@@ -10,6 +15,9 @@ import javax.persistence.Id;
  * @since 2021/12/8
  */
 @Entity(name = "chat_user")
+@Setter
+@Getter
+@NoArgsConstructor
 public class UserInfo {
     @Id
     private String userId;
@@ -22,55 +30,12 @@ public class UserInfo {
 
     private String headImageUrl; // 头像地址
 
-    public UserInfo() {
-
-    }
-
     public UserInfo(String userName, String userAccount, String password, String headImageUrl) {
-        this.userId = userAccount;
+        this.userId = UUID.randomUUID().toString();
         this.userName = userName;
         this.userAccount = userAccount;
         this.password = password;
         this.headImageUrl = headImageUrl;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setUserAccount(String userAccount) {
-        this.userAccount = userAccount;
-    }
-
-    public String getUserAcount() {
-        return userAccount;
-    }
-
-    public void setHeadImageUrl(String headImageUrl) {
-        this.headImageUrl = headImageUrl;
-    }
-
-    public String getHeadImageUrl() {
-        return headImageUrl;
-    }
 }

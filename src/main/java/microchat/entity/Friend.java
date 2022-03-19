@@ -1,7 +1,12 @@
 package microchat.entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.UUID;
 
 /**
  * 好友，对应好友关系表
@@ -10,6 +15,9 @@ import javax.persistence.Id;
  * @since 2021/12/8
  */
 @Entity(name = "friend")
+@Setter
+@Getter
+@NoArgsConstructor
 public class Friend {
     @Id
     private String id;
@@ -18,37 +26,10 @@ public class Friend {
 
     private String friendId;
 
-    public Friend() {
-
-    }
-
-    public Friend(String id,String userId,String friendId) {
-        this.id = id;
+    public Friend(String id, String userId, String friendId) {
+        this.id = UUID.randomUUID().toString();
         this.userId = userId;
         this.friendId = friendId;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setFriendId(String friendId) {
-        this.friendId = friendId;
-    }
-
-    public String getFriendId() {
-        return friendId;
-    }
 }

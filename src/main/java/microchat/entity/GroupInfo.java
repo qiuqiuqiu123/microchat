@@ -1,7 +1,12 @@
 package microchat.entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.UUID;
 
 /**
  * 群组信息
@@ -10,6 +15,9 @@ import javax.persistence.Id;
  * @since 2021/12/8
  */
 @Entity(name = "chat_group_info")
+@Setter
+@Getter
+@NoArgsConstructor
 public class GroupInfo {
     @Id
     private String groupId;
@@ -20,46 +28,11 @@ public class GroupInfo {
 
     private String creatorId;
 
-    public GroupInfo() {
-
-    }
-
-    public GroupInfo(String groupId,String groupName,String imageUrl,String creatorId) {
-        this.groupId = groupId;
+    public GroupInfo(String groupId, String groupName, String imageUrl, String creatorId) {
+        this.groupId = UUID.randomUUID().toString();
         this.groupName = groupName;
         this.imageUrl = imageUrl;
         this.creatorId = creatorId;
     }
 
-    public void setGroupId(String groupId) {
-        this.groupId = groupId;
-    }
-
-    public String getGroupId() {
-        return groupId;
-    }
-
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
-    }
-
-    public String getGroupName() {
-        return groupName;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setCreatorId(String creatorId) {
-        this.creatorId = creatorId;
-    }
-
-    public String getCreatorId() {
-        return creatorId;
-    }
 }

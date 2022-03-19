@@ -1,5 +1,9 @@
 package microchat.entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.UUID;
@@ -11,6 +15,9 @@ import java.util.UUID;
  * @since 2021/12/8
  */
 @Entity(name = "chat_group")
+@Setter
+@Getter
+@NoArgsConstructor
 public class Group {
     @Id
     private String id;
@@ -19,37 +26,9 @@ public class Group {
 
     private String userId;
 
-    public Group() {
-
-    }
-
-    public Group(String groupId,String userId) {
-        id = UUID.randomUUID().toString();
+    public Group(String groupId, String userId) {
+        this.id = UUID.randomUUID().toString();
         this.groupId = groupId;
         this.userId = userId;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setGroupId(String groupId) {
-        this.groupId = groupId;
-    }
-
-    public String getGroupId() {
-        return groupId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getUserId() {
-        return userId;
     }
 }
