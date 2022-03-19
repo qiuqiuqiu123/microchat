@@ -3,6 +3,7 @@ package microchat.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import microchat.utils.UUIDUtil;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -31,7 +32,7 @@ public class UserInfo {
     private String headImageUrl; // 头像地址
 
     public UserInfo(String userName, String userAccount, String password, String headImageUrl) {
-        this.userId = UUID.randomUUID().toString();
+        this.userId = UUIDUtil.getUUID();
         this.userName = userName;
         this.userAccount = userAccount;
         this.password = password;

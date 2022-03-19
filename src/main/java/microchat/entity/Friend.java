@@ -3,6 +3,7 @@ package microchat.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import microchat.utils.UUIDUtil;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -26,8 +27,8 @@ public class Friend {
 
     private String friendId;
 
-    public Friend(String id, String userId, String friendId) {
-        this.id = UUID.randomUUID().toString();
+    public Friend(String userId, String friendId) {
+        this.id = UUIDUtil.getUUID();
         this.userId = userId;
         this.friendId = friendId;
     }

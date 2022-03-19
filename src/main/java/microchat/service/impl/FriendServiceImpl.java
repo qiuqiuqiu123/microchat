@@ -1,10 +1,15 @@
 package microchat.service.impl;
 
+import lombok.extern.slf4j.Slf4j;
+import microchat.entity.Friend;
 import microchat.entity.UserInfo;
 import microchat.repository.FriendRepository;
+import microchat.repository.UserInfoRepository;
 import microchat.service.FriendService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,23 +18,44 @@ import java.util.List;
  * @author qiang
  * @since 2022/3/19
  */
+@Slf4j
+@Service
 public class FriendServiceImpl implements FriendService {
     @Autowired
-    FriendRepository friendRepository;
+    private FriendRepository friendRepository;
 
+    @Autowired
+    private UserInfoRepository userInfoRepository;
 
     @Override
     public void addFriend(String userId, String friendId) {
-
+        log.info("[FriendService] add Friend start");
+        // 加好友是双向的
+        Friend myFriend = new Friend(userId, friendId);
+        Friend frFriend = new Friend(friendId, userId);
+        friendRepository.save(myFriend);
+        friendRepository.save(frFriend);
+        log.info("[FriendService] add Friend end");
     }
 
     @Override
     public void removeFriend(String userId, String friendId) {
-
+        log.info("[FriendService] remove Friend start");
+        // 删除也是双向的
+        friendRepository.deleteByUserIdAndFriendId(userId, friendId);
+        friendRepository.deleteByUserIdAndFriendId(friendId, userId);
+        log.info("[FriendService] remove Friend end");
     }
 
     @Override
     public List<UserInfo> findAllFriend(String userId) {
-        return null;
+        log.info("[FriendService] find all Friend start");
+        List<Friend> friends = friendRepository.findAllByUserId(userId);
+        List<UserInfo> userInfos = new ArrayList<>();
+        friends.forEach(friend -> {
+            userInfos.add(userInfoRepository.findByUserId(friend.getFriendId()));
+        });
+        log.info("[FriendService] find all Friend end");
+        return userInfos;
     }
 }

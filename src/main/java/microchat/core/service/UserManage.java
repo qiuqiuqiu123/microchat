@@ -1,14 +1,11 @@
-package microchat.service.impl;
+package microchat.core.service;
 
 import io.netty.channel.Channel;
 import lombok.extern.slf4j.Slf4j;
 import microchat.core.utils.NettyUtil;
-import microchat.entity.Group;
 import microchat.entity.User;
-import microchat.repository.GroupRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -19,6 +16,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @since 2021/12/8
  */
 @Slf4j
+@Service
 public class UserManage {
 
     private static final AtomicInteger userOnlineNum = new AtomicInteger(0);
@@ -29,16 +27,9 @@ public class UserManage {
     // 一个通道和一个用户绑定
     private ConcurrentHashMap<Channel, String> channels = new ConcurrentHashMap<>();
 
-    @Autowired
-    private GroupRepository groupRepository;
-
     public User getUser(String userId) {
         // 不存在就返回空指针
         return users.getOrDefault(userId, null);
-    }
-
-    public List<Group> findAllByGroupId(String groupId) {
-        return groupRepository.findAllByGroupId(groupId);
     }
 
     /**
@@ -69,7 +60,9 @@ public class UserManage {
      */
     public void removeChannel(String userId) {
         log.info("[UserManage] remove channel start");
+
         User user = getUser(userId);
+
         if (user == null || !user.getChannel().isActive()) {
             log.error("[UserManage] channel is active,address is : {}", user.getIpAddr());
             return;

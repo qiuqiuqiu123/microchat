@@ -17,4 +17,6 @@ public interface GroupRepository extends JpaRepository<Group, String> {
     Group findByGroupIdAndUserId(String groupId, String userId);
 
     List<Group> findAllByUserId(String userId);
+
+    void deleteAllByGroupId(String groupId);
 }
