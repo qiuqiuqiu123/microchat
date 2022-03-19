@@ -21,7 +21,8 @@ public class UserManage {
 
     private AtomicInteger userOnline = new AtomicInteger(0);
 
-    @Autowired
+//    @Autowired
+//    private
 
 
 }
