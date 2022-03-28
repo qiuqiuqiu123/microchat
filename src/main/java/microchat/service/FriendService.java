@@ -11,10 +11,10 @@ import java.util.List;
  * @since 2022/3/19
  */
 public interface FriendService {
-    void addFriend(String userId, String friendId);
+    void add(String userId, String friendId);
 
-    void removeFriend(String userId, String friendId);
+    void remove(String userId, String friendId);
 
-    List<UserInfo> findAllFriend(String userId);
+    List<UserInfo> findAllByUserId(String userId);
 
 }

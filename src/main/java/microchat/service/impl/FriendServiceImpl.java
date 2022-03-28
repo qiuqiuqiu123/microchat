@@ -28,7 +28,7 @@ public class FriendServiceImpl implements FriendService {
     private UserInfoRepository userInfoRepository;
 
     @Override
-    public void addFriend(String userId, String friendId) {
+    public void add(String userId, String friendId) {
         log.info("[FriendService] add Friend start");
         // 加好友是双向的
         Friend myFriend = new Friend(userId, friendId);
@@ -39,7 +39,7 @@ public class FriendServiceImpl implements FriendService {
     }
 
     @Override
-    public void removeFriend(String userId, String friendId) {
+    public void remove(String userId, String friendId) {
         log.info("[FriendService] remove Friend start");
         // 删除也是双向的
         friendRepository.deleteByUserIdAndFriendId(userId, friendId);
@@ -48,7 +48,7 @@ public class FriendServiceImpl implements FriendService {
     }
 
     @Override
-    public List<UserInfo> findAllFriend(String userId) {
+    public List<UserInfo> findAllByUserId(String userId) {
         log.info("[FriendService] find all Friend start");
         List<Friend> friends = friendRepository.findAllByUserId(userId);
         List<UserInfo> userInfos = new ArrayList<>();

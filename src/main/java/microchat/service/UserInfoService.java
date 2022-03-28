@@ -9,9 +9,9 @@ import microchat.entity.UserInfo;
  * @since 2022/3/19
  */
 public interface UserInfoService {
-    UserInfo createUser(String userName, String userAccount, String imageUrl, String password);
+    UserInfo create(String userName, String userAccount, String imageUrl, String password);
 
-    UserInfo getUser(String userIdORUserName);
+    UserInfo get(String userIdORUserName);
 
     boolean login(String userAccount, String password);
 }

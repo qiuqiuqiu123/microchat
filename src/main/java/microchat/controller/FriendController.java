@@ -32,23 +32,23 @@ public class FriendController {
      */
     @RequestMapping(method = RequestMethod.GET, path = "/friends")
     public String findFriends(String userId) {
-        return VoUtils.getFriendAndGroupVo(userInfoService.getUser(userId), friendService.findAllFriend(userId));
+        return VoUtils.getFriendAndGroupVo(userInfoService.get(userId), friendService.findAllByUserId(userId));
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/search")
     public Result search(String friendIdOrAccount) {
-        return new Result(2000, "查询好友成功", userInfoService.getUser(friendIdOrAccount));
+        return new Result(2000, "查询好友成功", userInfoService.get(friendIdOrAccount));
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/add")
     public Result add(String userId, String friendId) {
-        friendService.addFriend(userId, friendId);
+        friendService.add(userId, friendId);
         return new Result(2000, "添加好友成功", null);
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/delete")
     public Result delete(String userId, String friendId) {
-        friendService.removeFriend(userId, friendId);
+        friendService.remove(userId, friendId);
         return new Result(2000, "删除好友成功", null);
     }
 

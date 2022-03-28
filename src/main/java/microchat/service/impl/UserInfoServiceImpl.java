@@ -21,7 +21,7 @@ public class UserInfoServiceImpl implements UserInfoService {
     UserInfoRepository userInfoRepository;
 
     @Override
-    public UserInfo createUser(String userName, String userAccount, String imageUrl, String password) {
+    public UserInfo create(String userName, String userAccount, String imageUrl, String password) {
         log.info("[UserInfoService] create user");
         UserInfo userInfo = new UserInfo(userName, userAccount, password, imageUrl);
         userInfoRepository.save(userInfo);
@@ -29,7 +29,7 @@ public class UserInfoServiceImpl implements UserInfoService {
     }
 
     @Override
-    public UserInfo getUser(String userIdORUserAccount) {
+    public UserInfo get(String userIdORUserAccount) {
         UserInfo userInfo = userInfoRepository.findById(userIdORUserAccount).get();
         if (userInfo == null) {
             userInfo = userInfoRepository.findByAccount(userIdORUserAccount);

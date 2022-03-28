@@ -14,17 +14,17 @@ import java.util.List;
  */
 public interface GroupService {
 
-    GroupInfo createGroup(String creatorId, String groupName);
+    GroupInfo create(String creatorId, String groupName);
 
-    void removeGroup(String groupId);
+    void delete(String groupId);
 
-    void joinGroup(String groupId, String userId);
+    void join(String groupId, String userId);
 
-    void outGroup(String groupId, String userId);
+    void quit(String groupId, String userId);
 
-    List<Group> findAllGroupByUserId(String userId);
+    List<Group> findAllByUserId(String userId);
 
-    GroupInfo getGroupInfo(String groupId);
+    GroupInfo get(String groupId);
 
     List<UserInfo> findMembersByGroupId(String groupId);
 }

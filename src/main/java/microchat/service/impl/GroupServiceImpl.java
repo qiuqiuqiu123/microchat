@@ -31,7 +31,7 @@ public class GroupServiceImpl implements GroupService {
     private UserInfoRepository userInfoRepository;
 
     @Override
-    public GroupInfo createGroup(String creatorId, String groupName) {
+    public GroupInfo create(String creatorId, String groupName) {
         log.info("[GroupService] create group");
         String imageUrl = "";
         GroupInfo groupInfo = new GroupInfo(groupName, imageUrl, creatorId);
@@ -42,35 +42,35 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public void removeGroup(String groupId) {
+    public void delete(String groupId) {
         log.info("[GroupService] remove group");
         groupInfoRepository.deleteById(groupId);
         groupRepository.deleteAllByGroupId(groupId);
     }
 
     @Override
-    public void joinGroup(String groupId, String userId) {
+    public void join(String groupId, String userId) {
         log.info("[GroupService] join group");
         Group group = new Group(groupId, userId);
         groupRepository.save(group);
     }
 
     @Override
-    public void outGroup(String groupId, String userId) {
+    public void quit(String groupId, String userId) {
         log.info("[GroupService] join group");
         Group group = groupRepository.findByGroupIdAndUserId(groupId, userId);
         groupRepository.delete(group);
     }
 
     @Override
-    public List<Group> findAllGroupByUserId(String userId) {
+    public List<Group> findAllByUserId(String userId) {
         log.info("[GroupService] find all group");
         List<Group> groups = groupRepository.findAllByUserId(userId);
         return new ArrayList<>(groups);
     }
 
     @Override
-    public GroupInfo getGroupInfo(String groupId) {
+    public GroupInfo get(String groupId) {
         log.info("[GroupService] find all group");
         return groupInfoRepository.findAllById(groupId);
     }
