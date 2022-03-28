@@ -7,7 +7,6 @@ import microchat.utils.UUIDUtil;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.util.UUID;
 
 /**
  * 群组信息
@@ -21,17 +20,17 @@ import java.util.UUID;
 @NoArgsConstructor
 public class GroupInfo {
     @Id
-    private String groupId;
+    private String id;
 
-    private String groupName;
+    private String name;
 
     private String imageUrl;
 
     private String creatorId;
 
     public GroupInfo(String groupName, String imageUrl, String creatorId) {
-        this.groupId = UUIDUtil.getUUID();
-        this.groupName = groupName;
+        this.id = UUIDUtil.getUUID();
+        this.name = groupName;
         this.imageUrl = imageUrl;
         this.creatorId = creatorId;
     }

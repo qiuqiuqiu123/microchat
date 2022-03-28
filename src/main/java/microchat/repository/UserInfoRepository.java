@@ -3,6 +3,8 @@ package microchat.repository;
 import microchat.entity.UserInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
+
 /**
  * 用户信息查询
  *
@@ -10,7 +12,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @since 2022/3/19
  */
 public interface UserInfoRepository extends JpaRepository<UserInfo, String> {
-    UserInfo findByUserId(String userId);
+    Optional<UserInfo> findById(String id);
 
-    UserInfo findByUserAccount(String userAccount);
+    UserInfo findByAccount(String account);
 }

@@ -7,7 +7,6 @@ import microchat.utils.UUIDUtil;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.util.UUID;
 
 /**
  * 用户信息，与用户表对应
@@ -21,20 +20,20 @@ import java.util.UUID;
 @NoArgsConstructor
 public class UserInfo {
     @Id
-    private String userId;
+    private String id;
 
-    private String userName;
+    private String name;
 
-    private String userAccount; // 账号
+    private String account; // 账号
 
     private String password; // 密码
 
     private String headImageUrl; // 头像地址
 
-    public UserInfo(String userName, String userAccount, String password, String headImageUrl) {
-        this.userId = UUIDUtil.getUUID();
-        this.userName = userName;
-        this.userAccount = userAccount;
+    public UserInfo(String name, String account, String password, String headImageUrl) {
+        this.id = UUIDUtil.getUUID();
+        this.name = name;
+        this.account = account;
         this.password = password;
         this.headImageUrl = headImageUrl;
     }

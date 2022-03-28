@@ -9,6 +9,7 @@ import io.netty.handler.codec.http.HttpServerCodec;
 import io.netty.handler.stream.ChunkedWriteHandler;
 import io.netty.handler.timeout.IdleStateHandler;
 import lombok.extern.slf4j.Slf4j;
+import microchat.core.handler.MessageHandler;
 import org.springframework.stereotype.Service;
 
 import java.net.InetSocketAddress;
@@ -37,7 +38,8 @@ public class MicroChatServer extends BaseChatServer {
                         ch.pipeline().addLast(defaultEventLoopGroup, new HttpServerCodec(), // 请求解码器
                                 new HttpObjectAggregator(65536), // 将多个消息转换成单一的消息对象
                                 new ChunkedWriteHandler(), // 支持异步发送大的码流，一般用于文件发送
-                                new IdleStateHandler(60, 0, 0) // 检测链路是否空闲
+                                new IdleStateHandler(60, 0, 0), // 检测链路是否空闲
+                                new MessageHandler() // 处理消息的发送
                         );
                     }
                 });

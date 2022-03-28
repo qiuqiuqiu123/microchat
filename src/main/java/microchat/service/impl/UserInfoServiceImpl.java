@@ -30,9 +30,9 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Override
     public UserInfo getUser(String userIdORUserAccount) {
-        UserInfo userInfo = userInfoRepository.findByUserId(userIdORUserAccount);
+        UserInfo userInfo = userInfoRepository.findById(userIdORUserAccount).get();
         if (userInfo == null) {
-            userInfo = userInfoRepository.findByUserAccount(userIdORUserAccount);
+            userInfo = userInfoRepository.findByAccount(userIdORUserAccount);
         }
         return userInfo;
     }

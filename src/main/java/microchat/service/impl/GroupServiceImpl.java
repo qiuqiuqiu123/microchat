@@ -36,7 +36,7 @@ public class GroupServiceImpl implements GroupService {
         String imageUrl = "";
         GroupInfo groupInfo = new GroupInfo(groupName, imageUrl, creatorId);
         groupInfoRepository.save(groupInfo);
-        Group group = new Group(groupInfo.getGroupId(), creatorId);
+        Group group = new Group(groupInfo.getId(), creatorId);
         groupRepository.save(group);
         return groupInfo;
     }
@@ -72,7 +72,7 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public GroupInfo getGroupInfo(String groupId) {
         log.info("[GroupService] find all group");
-        return groupInfoRepository.findAllByGroupId(groupId);
+        return groupInfoRepository.findAllById(groupId);
     }
 
     @Override
@@ -81,7 +81,7 @@ public class GroupServiceImpl implements GroupService {
         List<Group> groups = groupRepository.findAllByGroupId(groupId);
         List<UserInfo> userInfos = new ArrayList<>();
         groups.forEach(group -> {
-            userInfos.add(userInfoRepository.findByUserId(group.getUserId()));
+            userInfos.add(userInfoRepository.findById(group.getUserId()).get());
         });
         return userInfos;
     }

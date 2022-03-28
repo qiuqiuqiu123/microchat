@@ -53,7 +53,7 @@ public class FriendServiceImpl implements FriendService {
         List<Friend> friends = friendRepository.findAllByUserId(userId);
         List<UserInfo> userInfos = new ArrayList<>();
         friends.forEach(friend -> {
-            userInfos.add(userInfoRepository.findByUserId(friend.getFriendId()));
+            userInfos.add(userInfoRepository.findById(friend.getFriendId()).get());
         });
         log.info("[FriendService] find all Friend end");
         return userInfos;

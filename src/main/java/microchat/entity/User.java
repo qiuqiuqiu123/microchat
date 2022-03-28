@@ -20,19 +20,19 @@ public class User {
 
     private long time = 0;
 
-    private String userId; // UID
+    private String id; // UID
 
-    private String userName; // 昵称
+    private String name; // 昵称
 
     private String ipAddr; // IP地址
 
     private Channel channel; // 通道
 
-    public User(boolean isAuth, long time, String userId, String userName, String ipAddr, Channel channel) {
+    public User(boolean isAuth, long time, String id, String name, String ipAddr, Channel channel) {
         this.isAuth = isAuth;
         this.time = time;
-        this.userId = userId;
-        this.userName = userName;
+        this.id = id;
+        this.name = name;
         this.ipAddr = ipAddr;
         this.channel = channel;
     }
