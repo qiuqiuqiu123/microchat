@@ -24,7 +24,6 @@ import java.util.List;
  * @since 2021/12/8
  */
 @Slf4j
-@Component
 public class MessageHandler extends SimpleChannelInboundHandler<TextWebSocketFrame> {
     private UserManage userManage = (UserManage) SpringUtil.getBean("userManage");
 
