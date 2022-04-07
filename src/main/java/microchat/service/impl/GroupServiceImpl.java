@@ -10,6 +10,7 @@ import microchat.repository.UserInfoRepository;
 import microchat.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,7 @@ public class GroupServiceImpl implements GroupService {
     private UserInfoRepository userInfoRepository;
 
     @Override
+    @Transactional
     public GroupInfo create(String creatorId, String groupName) {
         log.info("[GroupService] create group");
         String imageUrl = "";
@@ -38,6 +40,9 @@ public class GroupServiceImpl implements GroupService {
         groupInfoRepository.save(groupInfo);
         Group group = new Group(groupInfo.getId(), creatorId);
         groupRepository.save(group);
+        if (true) {
+            throw new RuntimeException("test");
+        }
         return groupInfo;
     }
 

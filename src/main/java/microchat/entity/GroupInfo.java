@@ -28,9 +28,9 @@ public class GroupInfo {
 
     private String creatorId;
 
-    public GroupInfo(String groupName, String imageUrl, String creatorId) {
+    public GroupInfo(String name, String imageUrl, String creatorId) {
         this.id = UUIDUtil.getUUID();
-        this.name = groupName;
+        this.name = name;
         this.imageUrl = imageUrl;
         this.creatorId = creatorId;
     }

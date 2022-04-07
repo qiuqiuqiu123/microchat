@@ -14,17 +14,45 @@ import java.util.List;
  */
 public interface GroupService {
 
-    GroupInfo create(String creatorId, String groupName);
+    /**
+     * @param creatorId 创建者id
+     * @param name
+     * @return
+     */
+    GroupInfo create(String creatorId, String name);
 
+    /**
+     * @param groupId 群id
+     */
     void delete(String groupId);
 
+    /**
+     * @param groupId 群id
+     * @param userId
+     */
     void join(String groupId, String userId);
 
+    /**
+     * @param groupId 群id
+     * @param userId
+     */
     void quit(String groupId, String userId);
 
+    /**
+     * @param userId 用户id
+     * @return
+     */
     List<Group> findAllByUserId(String userId);
 
+    /**
+     * @param groupId 群id
+     * @return
+     */
     GroupInfo get(String groupId);
 
+    /**
+     * @param groupId 群id
+     * @return
+     */
     List<UserInfo> findMembersByGroupId(String groupId);
 }
