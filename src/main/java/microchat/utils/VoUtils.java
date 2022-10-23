@@ -29,7 +29,7 @@ public class VoUtils {
         data.put("mine", new FriendVo(userInfo.getName(), userInfo.getId(), "online", "该用户很懒，暂未签名", "https://img2.baidu.com/it/u=1790834130,1952230725&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500"));
         List<FriendVo> friendVos = new ArrayList<>();
         for (UserInfo friend : friends) {
-            friendVos.add(new FriendVo(userInfo.getName(), userInfo.getId(), "online", "该用户很懒，暂未签名", "https://img2.baidu.com/it/u=1790834130,1952230725&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500"));
+            friendVos.add(new FriendVo(friend.getName(), friend.getId(), "online", "该用户很懒，暂未签名", "https://img2.baidu.com/it/u=1790834130,1952230725&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500"));
         }
         GroupVo groupVo = new GroupVo("好友", 1, 2, friendVos);
         List<GroupVo> groups = new ArrayList<>();

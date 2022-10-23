@@ -49,10 +49,11 @@ public class FriendServiceImpl implements FriendService {
 
     @Override
     public List<UserInfo> findAllByUserId(String userId) {
-        log.info("[FriendService] find all Friend start");
+        log.info("[FriendService] {} find all Friend start", userId);
         List<Friend> friends = friendRepository.findAllByUserId(userId);
         List<UserInfo> userInfos = new ArrayList<>();
         friends.forEach(friend -> {
+            log.info("{}'s friend {}", userId, friend                                                        );
             userInfos.add(userInfoRepository.findById(friend.getFriendId()).get());
         });
         log.info("[FriendService] find all Friend end");

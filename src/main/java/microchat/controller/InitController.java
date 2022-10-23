@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.PostConstruct;
 
 /**
- * 主要做一些启动时的初始化工作+
+ * 主要做一些启动时的初始化工作
  * @author qiang
  * @since 2022/3/29
  */

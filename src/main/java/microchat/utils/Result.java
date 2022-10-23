@@ -16,9 +16,10 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Result<T> implements Serializable {
-    private static final long serialVersionUID = 1L;
 
-    private int resultCode;
+    private static final long serialVersionUID = -6891313029125283772L;
+
+    private int code;
 
     private String message;
 

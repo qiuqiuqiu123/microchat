@@ -1,5 +1,6 @@
 package microchat.entity;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,8 +16,7 @@ import javax.persistence.Id;
  * @since 2021/12/8
  */
 @Entity(name = "chat_group")
-@Setter
-@Getter
+@Data
 @NoArgsConstructor
 public class Group {
     @Id

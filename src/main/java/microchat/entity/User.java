@@ -1,6 +1,7 @@
 package microchat.entity;
 
 import io.netty.channel.Channel;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,8 +13,7 @@ import lombok.Setter;
  * @author qiang
  * @since 2021/12/8
  */
-@Setter
-@Getter
+@Data
 @NoArgsConstructor
 public class User {
     private boolean isAuth = false; // 是否认证

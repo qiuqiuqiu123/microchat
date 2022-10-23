@@ -1,5 +1,6 @@
 package microchat.vo;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,13 +13,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FriendVo {
-    String userName;
+    @JSONField(name="username")
+    private String userName;
 
-    String id;
+    private String id;
 
-    String status;
+    private String status;
 
-    String sign;
+    private String sign;
 
-    String avatar;
+    private String avatar;
 }

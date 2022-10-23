@@ -5,6 +5,7 @@ import microchat.service.UserInfoService;
 import microchat.utils.Result;
 import microchat.utils.VoUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author qiang
  * @since 2022/3/20
  */
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/friend")
 public class FriendController {
