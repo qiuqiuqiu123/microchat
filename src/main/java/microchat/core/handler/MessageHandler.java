@@ -32,7 +32,8 @@ public class MessageHandler extends SimpleChannelInboundHandler<TextWebSocketFra
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, TextWebSocketFrame textWebSocketFrame) throws Exception {
         ChatMessage chatMessage = JSON.parseObject(textWebSocketFrame.text(), ChatMessage.class);
-        handlerGroupMessage(chatMessage);
+        log.info("消息处理器：{}", textWebSocketFrame.text());
+        handlerMessage(chatMessage);
     }
 
     @Override

@@ -29,10 +29,10 @@ public class UserInfoServiceImpl implements UserInfoService {
     }
 
     @Override
-    public UserInfo get(String userIdORUserAccount) {
-        UserInfo userInfo = userInfoRepository.findById(userIdORUserAccount).get();
+    public UserInfo get(String userIdOrUserName) {
+        UserInfo userInfo = userInfoRepository.findById(userIdOrUserName).get();
         if (userInfo == null) {
-            userInfo = userInfoRepository.findByAccount(userIdORUserAccount);
+            userInfo = userInfoRepository.findByAccount(userIdOrUserName);
         }
         return userInfo;
     }

@@ -14,15 +14,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ChatMessage {
-    public static final int HEART_BEAT = 1;
+    public static final int HEART_BEAT = 0;
 
-    public static final int PRIVATE = 2;
+    public static final int PRIVATE = 1;
 
-    public static final int GROUP = 3;
+    public static final int GROUP = 2;
 
-    public static final int BIND = 4;
+    public static final int BIND = 3;
 
-    private int type; // 1是心跳，2是单聊，3是群聊，4认证消息，用于登录绑定channel
+    private int type; // 0是心跳，1是单聊，2是群聊，3认证消息，用于登录绑定channel
 
     private String senderId;
 
@@ -32,7 +32,7 @@ public class ChatMessage {
 
     private String receiverName;
 
-    private String context;
+    private String content;
 
     private long time;
 

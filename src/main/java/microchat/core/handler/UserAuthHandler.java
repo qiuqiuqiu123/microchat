@@ -10,7 +10,6 @@ import microchat.core.message.ChatMessage;
 import microchat.core.service.UserManage;
 import microchat.core.utils.Constants;
 import microchat.utils.SpringUtil;
-import sun.awt.windows.WEmbeddedFrame;
 
 /**
  * @author qiang
@@ -79,5 +78,7 @@ public class UserAuthHandler extends SimpleChannelInboundHandler<Object> {
             userManage.addChannel(ctx.channel(), chatMessage.getSenderId(), chatMessage.getSenderName());
         }
         // 后续消息交给MessageHandlerCHU
+        ctx.fireChannelRead(frame.retain());
     }
+
 }

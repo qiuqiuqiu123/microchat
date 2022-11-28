@@ -11,7 +11,7 @@ import microchat.entity.UserInfo;
 public interface UserInfoService {
     UserInfo create(String userName, String userAccount, String imageUrl, String password);
 
-    UserInfo get(String userIdORUserName);
+    UserInfo get(String userIdOrUserName);
 
     boolean login(String userAccount, String password);
 }
