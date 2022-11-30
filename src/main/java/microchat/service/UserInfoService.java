@@ -1,6 +1,7 @@
 package microchat.service;
 
 import microchat.entity.UserInfo;
+import microchat.exception.UserException;
 
 /**
  * 用户信息管理
@@ -11,7 +12,7 @@ import microchat.entity.UserInfo;
 public interface UserInfoService {
     UserInfo create(String userName, String userAccount, String imageUrl, String password);
 
-    UserInfo get(String userIdOrUserName);
+    UserInfo get(String userIdOrUserName) throws UserException;
 
     boolean login(String userAccount, String password);
 }

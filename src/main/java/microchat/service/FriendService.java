@@ -1,6 +1,7 @@
 package microchat.service;
 
 import microchat.entity.UserInfo;
+import microchat.exception.UserException;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  * @since 2022/3/19
  */
 public interface FriendService {
-    void add(String userId, String friendId);
+    void add(String userId, String friendId) throws UserException;
 
     void remove(String userId, String friendId);
 

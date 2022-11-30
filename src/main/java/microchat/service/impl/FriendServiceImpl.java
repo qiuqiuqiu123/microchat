@@ -3,6 +3,7 @@ package microchat.service.impl;
 import lombok.extern.slf4j.Slf4j;
 import microchat.entity.Friend;
 import microchat.entity.UserInfo;
+import microchat.exception.UserException;
 import microchat.repository.FriendRepository;
 import microchat.repository.UserInfoRepository;
 import microchat.service.FriendService;
@@ -28,8 +29,10 @@ public class FriendServiceImpl implements FriendService {
     private UserInfoRepository userInfoRepository;
 
     @Override
-    public void add(String userId, String friendId) {
+    public void add(String userId, String friendId) throws UserException {
         log.info("[FriendService] add Friend start");
+        userInfoRepository.findById(userId).orElseThrow(() -> new UserException("本用户不存在"));
+        userInfoRepository.findById(friendId).orElseThrow(() -> new UserException("该用户不存在"));
         // 加好友是双向的
         Friend myFriend = new Friend(userId, friendId);
         Friend frFriend = new Friend(friendId, userId);

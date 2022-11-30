@@ -2,10 +2,13 @@ package microchat.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import microchat.entity.UserInfo;
+import microchat.exception.UserException;
 import microchat.repository.UserInfoRepository;
 import microchat.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 /**
  * 用户信息管理
@@ -29,12 +32,12 @@ public class UserInfoServiceImpl implements UserInfoService {
     }
 
     @Override
-    public UserInfo get(String userIdOrUserName) {
-        UserInfo userInfo = userInfoRepository.findById(userIdOrUserName).get();
-        if (userInfo == null) {
-            userInfo = userInfoRepository.findByAccount(userIdOrUserName);
+    public UserInfo get(String userIdOrUserName) throws UserException {
+        Optional<UserInfo> optional = userInfoRepository.findById(userIdOrUserName);
+        if (optional.isPresent()) {
+            return optional.get();
         }
-        return userInfo;
+        return userInfoRepository.findByAccount(userIdOrUserName).orElseThrow(() -> new UserException("用户不存在"));
     }
 
     @Override

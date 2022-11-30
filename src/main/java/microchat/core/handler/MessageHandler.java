@@ -13,7 +13,6 @@ import microchat.entity.User;
 import microchat.exception.UserChannelException;
 import microchat.repository.GroupRepository;
 import microchat.utils.SpringUtil;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
