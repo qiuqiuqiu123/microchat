@@ -1,5 +1,6 @@
 package microchat.controller;
 
+import microchat.exception.FriendException;
 import microchat.exception.UserException;
 import microchat.service.FriendService;
 import microchat.service.UserInfoService;
@@ -45,8 +46,8 @@ public class FriendController {
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/add")
-    public Result add(String userId, String friendId) throws UserException {
-        if (StringUtils.isEmpty(userId) || StringUtils.isEmpty(friendId)) {
+    public Result add(String userId, String friendId) throws UserException, FriendException {
+        if (StringUtils.isBlank(userId) || StringUtils.isBlank(friendId)) {
             return new Result(400, "userId or friendId不能为空", null);
         }
         friendService.add(userId, friendId);
@@ -55,6 +56,9 @@ public class FriendController {
 
     @RequestMapping(method = RequestMethod.POST, path = "/delete")
     public Result delete(String userId, String friendId) {
+        if (StringUtils.isBlank(userId) || StringUtils.isBlank(friendId)) {
+            return new Result(400, "userId or friendId不能为空", null);
+        }
         friendService.remove(userId, friendId);
         return new Result(200, "删除好友成功", null);
     }

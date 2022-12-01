@@ -1,5 +1,6 @@
 package microchat.controller;
 
+import microchat.exception.FriendException;
 import microchat.exception.UserException;
 import microchat.utils.Result;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -28,6 +29,11 @@ public class ExceptionController {
 
     @ExceptionHandler(UserException.class)
     public Result userExceptionHandler(UserException ex) {
-        return new Result(500, "user is not exist", ex.getMessage());
+        return new Result(500, "user error", ex.getMessage());
+    }
+
+    @ExceptionHandler(FriendException.class)
+    public Result friendExceptionHandler(FriendException ex) {
+        return new Result(500, "friend error", ex.getMessage());
     }
 }
