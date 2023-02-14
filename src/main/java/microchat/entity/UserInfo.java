@@ -8,6 +8,7 @@ import microchat.utils.UUIDUtil;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
  * 用户信息，与用户表对应
@@ -18,7 +19,7 @@ import javax.persistence.Id;
 @Entity(name = "chat_user")
 @Data
 @NoArgsConstructor
-public class UserInfo {
+public class UserInfo implements Serializable {
     @Id
     private String id;
 

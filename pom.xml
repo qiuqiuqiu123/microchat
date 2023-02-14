@@ -109,6 +109,14 @@
             <artifactId>tlog-all-spring-boot-starter</artifactId>
             <version>1.5.0</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.alicp.jetcache/jetcache-starter-redis -->
+        <dependency>
+            <groupId>com.alicp.jetcache</groupId>
+            <artifactId>jetcache-starter-redis</artifactId>
+            <version>2.6.5</version>
+        </dependency>
+
     </dependencies>
     <dependencyManagement>
         <dependencies>

@@ -10,6 +10,7 @@ RUN chmod +x /app.sh
 ADD *.jar app.jar
 # 对外暴漏的端口号
 EXPOSE 8080
+EXPOSE 9688
 # 运行
 # 方式一
 ENTRYPOINT ["/app.sh"]
