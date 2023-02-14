@@ -1,30 +1,40 @@
 package microchat.config;
 
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
 import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.reactive.CorsWebFilter;
-import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 /**
- * CorsWebFilter这个是spring webflux中的过滤器
- * 可以解决网关层面多个服务的跨域问题
+ * FilterRegistrationBean<CorsFilter> 这个是web MVC中给出的过滤器
+ * 解决多个Controller中的跨域问题
  */
 @Configuration
 public class CorsFilterConfig {
     @Bean
-    public CorsWebFilter corsWebFilter() {
-
+    public FilterRegistrationBean<CorsFilter>
+    filterFilterRegistrationBean(){
         UrlBasedCorsConfigurationSource configSource =
                 new UrlBasedCorsConfigurationSource();
 
-        CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedOrigin("*");
-        config.addAllowedMethod("*");
-        config.addAllowedHeader("*");
-        config.setAllowCredentials(true);
+        CorsConfiguration corsConfiguration =
+                new CorsConfiguration();
 
-        configSource.registerCorsConfiguration("/**", config);
-        return new CorsWebFilter(configSource);
+        corsConfiguration.addAllowedOrigin("*");
+        corsConfiguration.addAllowedMethod("*");
+        corsConfiguration.addAllowedHeader("*");
+        corsConfiguration.setAllowCredentials(true);
+
+        configSource.registerCorsConfiguration("/**",
+                corsConfiguration);
+        FilterRegistrationBean<CorsFilter> fBean =
+                new FilterRegistrationBean<>(
+                        new CorsFilter(configSource));
+
+        fBean.setOrder(Ordered.HIGHEST_PRECEDENCE);
+        return fBean;
     }
 }
