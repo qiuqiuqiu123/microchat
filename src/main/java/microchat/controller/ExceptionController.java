@@ -1,5 +1,6 @@
 package microchat.controller;
 
+import cn.dev33.satoken.exception.NotPermissionException;
 import microchat.exception.FriendException;
 import microchat.exception.UserException;
 import microchat.utils.Result;
@@ -35,5 +36,10 @@ public class ExceptionController {
     @ExceptionHandler(FriendException.class)
     public Result friendExceptionHandler(FriendException ex) {
         return new Result(500, "friend error", ex.getMessage());
+    }
+
+    @ExceptionHandler(NotPermissionException.class)
+    public Result notPermissionExceptionHandler(NotPermissionException ex) {
+        return new Result(400, "you has no permission", ex.getMessage());
     }
 }

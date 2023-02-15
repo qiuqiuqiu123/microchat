@@ -29,7 +29,7 @@ public class UserController {
         UserInfo userInfo = userInfoService.get(userName);
         if (password.equals(userInfo.getPassword())) {
             StpUtil.login(userName);
-            return new Result<>(200, "登录成功", userInfo.getId());
+            return new Result<>(200, "登录成功", StpUtil.getTokenInfo());
         } else {
             return new Result<>(400, "账号密码错误", null);
         }

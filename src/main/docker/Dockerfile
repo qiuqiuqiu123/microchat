@@ -2,6 +2,10 @@
 FROM java:8
 # 维护者信息
 MAINTAINER ky
+# 指定编码
+ENV LC_ALL=zh_CN.utf8
+ENV LANG=zh_CN.utf8
+ENV LANGUAGE=zh_CN.utf8
 # 将本地的可执行文件拷贝到Docker容器中的根目录下
 COPY app.sh /
 #给app.sh赋予可执行权限
