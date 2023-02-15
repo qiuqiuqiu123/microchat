@@ -1,5 +1,7 @@
 package microchat.controller;
 
+import cn.dev33.satoken.stp.StpUtil;
+import cn.dev33.satoken.util.SaResult;
 import microchat.entity.UserInfo;
 import microchat.exception.UserException;
 import microchat.service.UserInfoService;
@@ -25,7 +27,11 @@ public class UserController {
     @RequestMapping(method = RequestMethod.POST, value = "/login")
     public Result login(String userName, String password) throws UserException {
         UserInfo userInfo = userInfoService.get(userName);
-
-        return new Result<>(200, "登录成功", userInfo.getId());
+        if (password.equals(userInfo.getPassword())) {
+            StpUtil.login(userName);
+            return new Result<>(200, "登录成功", userInfo.getId());
+        } else {
+            return new Result<>(400, "账号密码错误", null);
+        }
     }
 }

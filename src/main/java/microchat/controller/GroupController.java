@@ -1,5 +1,6 @@
 package microchat.controller;
 
+import cn.dev33.satoken.annotation.SaCheckLogin;
 import microchat.service.GroupService;
 import microchat.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @CrossOrigin
 @RestController
+@SaCheckLogin
 @RequestMapping(value = "/group")
 public class GroupController {
     @Autowired
